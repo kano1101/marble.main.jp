@@ -1,0 +1,8 @@
+baseURL = 'http://marble.main.jp/'
+languageCode = 'ja'
+title = 'Marble - Programming blog'
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      hardWraps = true
