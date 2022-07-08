@@ -1,3 +1,6 @@
 baseURL = 'http://marble.main.jp'
 languageCode = 'ja'
 title = 'Marble Project - Developer Blog'
+
+[params]
+  customCSS = ["/css/custom.css"]
