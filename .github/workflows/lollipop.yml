@@ -24,7 +24,7 @@ jobs:
           hugo-version: latest
 
       - name: Build
-        run: hugo --minify
+        run: hugo --minify --baseURL http://marble.main.jp
 
       - name: Deploy via FTP
         uses: SamKirkland/FTP-Deploy-Action@3.0.0
