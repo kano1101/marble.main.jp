@@ -1,6 +1,16 @@
 baseURL = 'http://marble.main.jp'
 languageCode = 'ja'
-title = 'Marble Project - Developer Blog'
+title = 'Marble 公式サイト'
+author = "Akira Kano (Aqun)"
 
 [params]
-  customCSS = ["/css/custom.css"]
+customCSS = [
+  "/css/header.css",
+  "/css/infotable.css",
+  "/css/custom.css",
+  "/css/footer.css",
+  "/css/body.css",
+]
+
+[params.site]
+copystart = "2022"
