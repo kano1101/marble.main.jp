@@ -1,22 +1,11 @@
-<!DOCTYPE html>
-<html lang="ja">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no">
-    {{ range .Site.Params.customCSS }}
-    <link rel="stylesheet" type="text/css" href="{{ . | relURL}}">
-    {{ end }}
-    <title>{{ .Site.Title }}</title>
-  </head>
-  <body>
-    <div class="wrapper">
-      <header>
-        <div class="header_logo">{{ .Site.Title }}</div>
-        <div class="nav_items">
-          <div class="nav_item"><a href="#"><div class="nav_text">HOME</div></a></div>
-          <div class="nav_item"><a href="#"><div class="nav_text">ダウンロード</div></a></div>
-          <div class="nav_item"><a href="#"><div class="nav_text">開発者ブログ</div></a></div>
-          <div class="nav_item"><a href="#"><div class="nav_text">お問い合わせ</div></a></div>
-        </div>
-      </header>
-
+<header>
+  <div class="header_inner">
+    <div class="header_logo">{{ .Site.Title }}</div>
+    <div class="nav_items">
+      <div class="nav_item"><a href="/"><div class="nav_text">HOME</div></a></div>
+      <div class="nav_item"><a href="/product/"><div class="nav_text">ダウンロード</div></a></div>
+      <div class="nav_item"><a href="/blog/"><div class="nav_text">開発者ブログ</div></a></div>
+      <div class="nav_item"><a href="/contact/"><div class="nav_text">お問い合わせ</div></a></div>
+    </div>
+  </div>
+</header>

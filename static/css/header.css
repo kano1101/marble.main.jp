@@ -1,43 +1,43 @@
 header
 {
-    padding: 1% 20px;
-    /* border-bottom : 1px solid #000; */
-    /* padding-top : 1%; */
-    /* padding-bottom : 1%; */
-    display: flex;
-    justify-content: flex-end;
-    background-color: darkgreen;
+    background-image: url("/images/marble.jpg");
+    background-size: cover;
+    padding: 20px 20px;
+    background-color: lightgray;
 }
 
+.header_inner {
+    max-width: 960px;
+    margin: 0 auto;
+    display: flex;
+}
 .header_logo {
     margin: 5px auto 5px 20px;
-    font-size : 1.5rem;
+    font-size : 1.4rem;
     font-weight: bold;
     text-align: center;
+    color: white;
 }
 
 .nav_items {
-    margin: 0;
     padding: 0;
     height: 40px;
-    border-color: #000;
+    border-color: gray;
     border-style: solid;
     border-width: 0px 1px;
     display: flex;
 }
 
 .nav_item {
-    border-color: #000;
+    border-color: gray;
     border-style: solid;
     border-width: 0px 1px;
-    /* background: #40A040; */
-    /* border-radius: 3px; */
     width: 140px;
     height: 40px;
 }
 
 .nav_item:hover {
-    background: #070;
+    background: gray;
     border-radius: 3px;
 }
 
@@ -48,6 +48,5 @@ header
 .nav_text {
     line-height: 40px;
     text-align: center;
-    /* font-weight: bold; */
     color: white;
 }

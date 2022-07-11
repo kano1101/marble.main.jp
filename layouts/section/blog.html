@@ -1,0 +1,10 @@
+{{ define "main" }}
+<div class="blog_content">
+  <div class="blog_lists">{{ .Content }}</div>
+  {{ range (.Paginator 5).Pages }}
+  <ul>
+    {{ .Render "blog_card" }}
+  </ul>
+  {{ end }}
+</div>
+{{ end }}

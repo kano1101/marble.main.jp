@@ -5,12 +5,13 @@ title = 'Marble 公式サイト'
 [params]
 customCSS = [
   "/css/header.css",
+  "/css/body.css",
+  "/css/list_page.css",
   "/css/infotable.css",
-  "/css/custom.css",
+  "/css/blog.css",
   "/css/footer.css",
-  "/css/body.css"
 ]
-author = "Akira Kano (Aqun)"
+author = "Marble Project"
 
 [params.site]
 copystart = "2022"

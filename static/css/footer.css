@@ -1,10 +1,17 @@
 footer{
     width: 100%;
-    background-color: darkgreen;
-    color: #fff;
+    background-image: url("/images/marble.jpg");
+    background-size: cover;
+    background-color: lightgray;
+    color: white;
     text-align: center;
     padding: 30px 0;
 
     position: absolute;/*←絶対位置*/
     bottom: 0; /*下に固定*/
+}
+
+.footer_inner {
+    max-width: 1280px;
+    margin: 0 auto;
 }
