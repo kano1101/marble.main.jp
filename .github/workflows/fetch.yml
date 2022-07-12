@@ -1,0 +1,14 @@
+name: Fetch
+
+on:
+  repository_dispatch:
+    types: [on-demand]
+
+jobs:
+  recieve-repository-dispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Receive
+        run: |
+          chmod +x ./.github/fetcher.sh
+          ./.github/fetcher.sh
