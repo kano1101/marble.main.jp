@@ -28,12 +28,14 @@ jobs:
 
       - name: Fetch Product
         run: |
-          chmod +x ./.github/fetcher.sh
-          ./.github/fetcher.sh
+          curl -sLJO -H 'Accept: application/octet-stream' \
+            "https://${{ secrets.RECIPE_NOTE_TOKEN }}@api.github.com/repos/kano1101/recipe_note/releases/assets/$( \
+              curl -sL https://${{ secrets.RECIPE_NOTE_TOKEN }}@api.github.com/repos/kano1101/recipe_note/releases/tags/v0.0.3 \
+                | jq '.assets[] | select(.name | contains("darwin")) | .id')"
 
       - name: Move Product
         run: |
-          mv Marble* public/
+          mv darwin* public/
 
       - name: Deploy via FTP
         uses: SamKirkland/FTP-Deploy-Action@3.0.0
