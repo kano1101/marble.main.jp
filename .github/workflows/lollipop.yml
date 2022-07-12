@@ -28,9 +28,12 @@ jobs:
 
       - name: Fetch Product
         run: |
-          sudo chmod +x ./.github/fetcher.sh
-          sudo ./.github/fetcher.sh
-          sudo mv ./Marble* public/
+          chmod +x ./.github/fetcher.sh
+          ./.github/fetcher.sh
+
+      - name: Move Product
+        run: |
+          mv Marble* public/
 
       - name: Deploy via FTP
         uses: SamKirkland/FTP-Deploy-Action@3.0.0
