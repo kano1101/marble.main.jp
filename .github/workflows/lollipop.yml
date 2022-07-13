@@ -63,9 +63,9 @@ jobs:
 
       - name: OS Validation
         if: >-
-          "$RELEASE_OS" != 'All' &&
-          "$RELEASE_OS" != 'Windows' &&
-          "$RELEASE_OS" != 'Mac'
+          '$RELEASE_OS' != 'All' &&
+          '$RELEASE_OS' != 'Windows' &&
+          '$RELEASE_OS' != 'Mac'
         run: | 
           echo "Cannot pass. Input OS is ${{ github.event.inputs.product_os }}."
           exit 12
@@ -76,8 +76,8 @@ jobs:
 
       - name: Fetch Product for Windows
         if: >-
-          "$RELEASE_OS" == 'All' ||
-          "$RELEASE_OS" == 'Windows'
+          '$RELEASE_OS' == 'All' ||
+          '$RELEASE_OS' == 'Windows'
         run: |
           cd download/
           curl -sLJO -H 'Accept: application/octet-stream' \
@@ -87,8 +87,8 @@ jobs:
 
       - name: Fetch Product for Mac
         if: >-
-          "$RELEASE_OS" == 'All' ||
-          "$RELEASE_OS" == 'Mac'
+          '$RELEASE_OS' == 'All' ||
+          '$RELEASE_OS' == 'Mac'
         run: |
           cd download/
           curl -sLJO -H 'Accept: application/octet-stream' \
