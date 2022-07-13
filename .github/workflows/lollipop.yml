@@ -17,6 +17,9 @@ jobs:
     runs-on: ubuntu-latest
     env:
       PRODUCT_VERSION: ${{ github.event.inputs.product_version }}
+      PRODUCT_OS: ${{ github.event.inputs.product_os }}
+      RELEASE_VERSION: ${{ github.event.client_payload.product_version }}
+      RELEASE_OS: ${{ github.event.client_payload.product_os }}
     steps:
       - uses: actions/checkout@v2
 
@@ -33,16 +36,14 @@ jobs:
           hugo-version: latest
 
       - name: Build
-        run: hugo --minify --baseURL http://marble.main.jp
+        run: hugo --minify --baseURL https://marble.main.jp
 
-      - name: Select Product Version
-#        if: ${{ !github.event.client_payload.from_release }}
+      - name: Check Env
         run: |
-          echo "${PRODUCT_VERSION}"
-
-#      - name: Check Env
-#        run: |
-#          echo "${PRODUCT_VERSION}"
+          echo "PRODUCT_VERSION=${PRODUCT_VERSION}"
+          echo "PRODUCT_OS=${PRODUCT_OS}"
+          echo "RELEASE_VERSION=${RELEASE_VERSION}"
+          echo "RELEASE_OS=${RELEASE_OS}"
 
       - name: OS Validation
         if: >-
