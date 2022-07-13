@@ -46,9 +46,9 @@ jobs:
 
       - name: OS Validation
         if: >-
-            ${{ github.event.inputs.product_os }} != "All" &&
-            ${{ github.event.inputs.product_os }} != "Windows" &&
-            ${{ github.event.inputs.product_os }} != "Mac"
+            ${{ github.event.inputs.product_os }} != 'All' &&
+            ${{ github.event.inputs.product_os }} != 'Windows' &&
+            ${{ github.event.inputs.product_os }} != 'Mac'
         run: | 
           echo "Cannot pass. Input OS is ${{ github.event.inputs.product_os }}."
           exit 1
@@ -66,7 +66,7 @@ jobs:
         run: |
           curl -sLJO -H 'Accept: application/octet-stream' \
             "https://${{ secrets.RECIPE_NOTE_TOKEN }}@api.github.com/repos/kano1101/recipe_note/releases/assets/$( \
-              curl -sL https://${{ secrets.RECIPE_NOTE_TOKEN }}@api.github.com/repos/kano1101/recipe_note/releases/tags/${PRODUCT_VERSION} \
+              curl -sL https://${{ secrets.RECIPE_NOTE_TOKEN }}@api.github.com/repos/kano1101/recipe_note/releases/tags/v${PRODUCT_VERSION} \
                 | jq '.assets[] | select(.name | contains("Mac")) | .id')"
 
       - name: Display Directory
