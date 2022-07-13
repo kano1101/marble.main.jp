@@ -33,6 +33,9 @@ jobs:
             echo "RELEASE_OS=$AUTO_OS" >> $GITHUB_ENV
             echo "RELEASE_VERSION=$AUTO_VERSION" >> $GITHUB_ENV
           fi
+
+      - name: Assert release require
+        run: |
           if [ -z $RELEASE_OS ] || [ -z $RELEASE_VERSION ]; then
             exit 11
           fi
