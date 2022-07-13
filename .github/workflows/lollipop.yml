@@ -15,6 +15,8 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    env:
+      PRODUCT_VERSION: ${{ github.event.inputs.product_version }}
     steps:
       - uses: actions/checkout@v2
 
@@ -34,23 +36,21 @@ jobs:
         run: hugo --minify --baseURL http://marble.main.jp
 
       - name: Select Product Version
-        if: ${{ !github.event.client_payload.from_release }}
+#        if: ${{ !github.event.client_payload.from_release }}
         run: |
           echo "${PRODUCT_VERSION}"
-        env:
-          PRODUCT_VERSION: ${{ github.event.inputs.product_version }}
 
-      - name: Check Env
-        run: |
-          echo "${PRODUCT_VERSION}"
+#      - name: Check Env
+#        run: |
+#          echo "${PRODUCT_VERSION}"
 
       - name: OS Validation
-        if: ${{ github.event.inputs.product_os }} != "All" && \
-            ${{ github.event.inputs.product_os }} != "Windows" && \
-            ${{ github.event.inputs.product_os }} != "Mac"
+        if: (${{ github.event.inputs.product_os }} != "All") && \
+            (${{ github.event.inputs.product_os }} != "Windows" &&) \
+            (${{ github.event.inputs.product_os }} != "Mac")
         run: | 
           echo "Cannot pass. Input OS is ${{ github.event.inputs.product_os }}."
-          exit 1
+#          exit 1
 
       - name: Fetch Product for Windows
         if: ${{ github.event.inputs.product_os }} == "All" || ${{ github.event.inputs.product_os }} == "Windows"
