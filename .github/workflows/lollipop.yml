@@ -56,7 +56,11 @@ jobs:
           exit 1
 
       - name: Fetch Product for Windows
-        if: ${{ github.event.inputs.product_os }} == "All" || ${{ github.event.inputs.product_os }} == "Windows"
+        if: >-
+          ${{
+            github.event.inputs.product_os == "All" ||
+            github.event.inputs.product_os == "Windows"
+          }}
         run: |
           curl -sLJO -H 'Accept: application/octet-stream' \
             "https://${{ secrets.RECIPE_NOTE_TOKEN }}@api.github.com/repos/kano1101/recipe_note/releases/assets/$( \
@@ -64,7 +68,11 @@ jobs:
                 | jq '.assets[] | select(.name | contains("Windows")) | .id')"
 
       - name: Fetch Product for Mac
-        if: ${{ github.event.inputs.product_os }} == "All" || ${{ github.event.inputs.product_os }} == "Mac"
+        if: >-
+          ${{
+            github.event.inputs.product_os == "All" ||
+            github.event.inputs.product_os == "Mac"
+          }}
         run: |
           curl -sLJO -H 'Accept: application/octet-stream' \
             "https://${{ secrets.RECIPE_NOTE_TOKEN }}@api.github.com/repos/kano1101/recipe_note/releases/assets/$( \
