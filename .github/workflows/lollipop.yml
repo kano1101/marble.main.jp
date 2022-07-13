@@ -58,8 +58,8 @@ jobs:
       - name: Fetch Product for Windows
         if: >-
           ${{
-            github.event.inputs.product_os == "All" ||
-            github.event.inputs.product_os == "Windows"
+            github.event.inputs.product_os == 'All' ||
+            github.event.inputs.product_os == 'Windows'
           }}
         run: |
           curl -sLJO -H 'Accept: application/octet-stream' \
@@ -70,8 +70,8 @@ jobs:
       - name: Fetch Product for Mac
         if: >-
           ${{
-            github.event.inputs.product_os == "All" ||
-            github.event.inputs.product_os == "Mac"
+            github.event.inputs.product_os == 'All' ||
+            github.event.inputs.product_os == 'Mac'
           }}
         run: |
           curl -sLJO -H 'Accept: application/octet-stream' \
