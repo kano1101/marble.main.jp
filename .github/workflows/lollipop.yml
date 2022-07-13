@@ -7,7 +7,7 @@ on:
         description: "Product Version (e.g. x.x.x)"
         required: true
   repository_dispatch:
-    types: [on-product-upgrade]
+    types: [on-demand-test]
 
 jobs:
   deploy:
