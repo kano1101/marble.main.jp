@@ -1,9 +1,16 @@
 name: lolipop
 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
+    inputs:
+      product_os:
+        description: "Product OS (e.g. Windows, Mac or All)"
+        required: true
+      product_version:
+        description: "Product Version (e.g. x.x.x)"
+        required: true
+  repository_dispatch:
+    types: [on-product-upgrade]
 
 jobs:
   deploy:
@@ -26,12 +33,39 @@ jobs:
       - name: Build
         run: hugo --minify --baseURL http://marble.main.jp
 
-      - name: Fetch Product
+      - name: Select Product Version
+        if: ${{ !github.event.client_payload.from_release }}
+        run: |
+          echo "${PRODUCT_VERSION}"
+        env:
+          PRODUCT_VERSION: ${{ github.event.inputs.product_version }}
+
+      - name: Check Env
+        run: |
+          echo "${PRODUCT_VERSION}"
+
+      - name: OS Validation
+        if: ${{ github.event.inputs.product_os != "All" && \
+                github.event.inputs.product_os != "Windows" && \
+                github.event.inputs.product_os != "Mac" }}
+        run: | 
+          exit 1
+
+      - name: Fetch Product for Windows
+        if: ${{ github.event.inputs.product_os == "All" || github.event.inputs.product_os == "Windows" }}
         run: |
           curl -sLJO -H 'Accept: application/octet-stream' \
             "https://${{ secrets.RECIPE_NOTE_TOKEN }}@api.github.com/repos/kano1101/recipe_note/releases/assets/$( \
-              curl -sL https://${{ secrets.RECIPE_NOTE_TOKEN }}@api.github.com/repos/kano1101/recipe_note/releases/tags/v0.0.3 \
-                | jq '.assets[] | select(.name | contains("darwin")) | .id')"
+              curl -sL https://${{ secrets.RECIPE_NOTE_TOKEN }}@api.github.com/repos/kano1101/recipe_note/releases/tags/v${PRODUCT_VERSION} \
+                | jq '.assets[] | select(.name | contains("Windows")) | .id')"
+
+      - name: Fetch Product for Mac
+        if: ${{ github.event.inputs.product_os == "All" || github.event.inputs.product_os == "Mac" }}
+        run: |
+          curl -sLJO -H 'Accept: application/octet-stream' \
+            "https://${{ secrets.RECIPE_NOTE_TOKEN }}@api.github.com/repos/kano1101/recipe_note/releases/assets/$( \
+              curl -sL https://${{ secrets.RECIPE_NOTE_TOKEN }}@api.github.com/repos/kano1101/recipe_note/releases/tags/${PRODUCT_VERSION} \
+                | jq '.assets[] | select(.name | contains("Mac")) | .id')"
 
       - name: Display Directory
         run: 
@@ -39,7 +73,7 @@ jobs:
 
       - name: Move Product
         run: |
-          mv ./*darwin* public/
+          mv ./Marble-for-* public/
 
       - name: Deploy via FTP
         uses: SamKirkland/FTP-Deploy-Action@3.0.0
