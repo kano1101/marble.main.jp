@@ -91,7 +91,7 @@ jobs:
 
       - name: Move Product
         run: |
-          mv ./Marble-for-* public/
+          mv ./download public/
 
       - name: Deploy via FTP
         uses: SamKirkland/FTP-Deploy-Action@3.0.0
