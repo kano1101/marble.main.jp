@@ -46,9 +46,11 @@ jobs:
 
       - name: OS Validation
         if: >-
-            ${{ github.event.inputs.product_os }} != 'All' &&
-            ${{ github.event.inputs.product_os }} != 'Windows' &&
-            ${{ github.event.inputs.product_os }} != 'Mac'
+            ${{
+              github.event.inputs.product_os != 'All' &&
+              github.event.inputs.product_os != 'Windows' &&
+              github.event.inputs.product_os != 'Mac'
+            }}
         run: | 
           echo "Cannot pass. Input OS is ${{ github.event.inputs.product_os }}."
           exit 1
