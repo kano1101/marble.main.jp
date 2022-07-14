@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       product_version:
-        description: "Product Version (e.g. x.x.x)"
+        description: "Product Version (e.g. vx.x.x)"
         required: true
   repository_dispatch:
     types: [product_fetch]
