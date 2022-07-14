@@ -7,7 +7,7 @@ on:
         description: "Product Version (e.g. x.x.x)"
         required: true
   repository_dispatch:
-    types: [on-demand-test]
+    types: [product_fetch]
 
 jobs:
   deploy:
@@ -63,11 +63,11 @@ jobs:
           cd download/
           curl -sLJO -H 'Accept: application/octet-stream' \
             "https://${{ secrets.RECIPE_NOTE_TOKEN }}@api.github.com/repos/kano1101/recipe_note/releases/assets/$( \
-              curl -sL https://${{ secrets.RECIPE_NOTE_TOKEN }}@api.github.com/repos/kano1101/recipe_note/releases/tags/v${RELEASE_VERSION} \
+              curl -sL https://${{ secrets.RECIPE_NOTE_TOKEN }}@api.github.com/repos/kano1101/recipe_note/releases/tags/${RELEASE_VERSION} \
                 | jq '.assets[] | select(.name | contains("Windows")) | .id')"
           curl -sLJO -H 'Accept: application/octet-stream' \
             "https://${{ secrets.RECIPE_NOTE_TOKEN }}@api.github.com/repos/kano1101/recipe_note/releases/assets/$( \
-              curl -sL https://${{ secrets.RECIPE_NOTE_TOKEN }}@api.github.com/repos/kano1101/recipe_note/releases/tags/v${RELEASE_VERSION} \
+              curl -sL https://${{ secrets.RECIPE_NOTE_TOKEN }}@api.github.com/repos/kano1101/recipe_note/releases/tags/${RELEASE_VERSION} \
                 | jq '.assets[] | select(.name | contains("Mac")) | .id')"
 
       - name: Display Directory
