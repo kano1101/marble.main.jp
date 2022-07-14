@@ -6,10 +6,10 @@ title = 'Marble 公式サイト'
 customCSS = [
   "/css/header.css",
   "/css/body.css",
-  "/css/list_page.css",
+  "/css/footer.css",
+  "/css/list_contents.css",
   "/css/infotable.css",
   "/css/blog.css",
-  "/css/footer.css",
 ]
 author = "Marble Project"
 
