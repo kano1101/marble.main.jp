@@ -78,6 +78,8 @@ jobs:
           ls -al ./public
           echo "in download directory"
           ls -al ./download
+          echo "display tree"
+          tree -L 3 -a
 
       - name: Move Product
         run: |
