@@ -74,6 +74,8 @@ jobs:
         run: |
           echo "in root directory"
           ls -al .
+          echo "in public directory"
+          ls -al ./public
           echo "in download directory"
           ls -al ./download
 
